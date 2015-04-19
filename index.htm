@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Chat</title>  
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body id="body">
+  <div id="main">
+		
+    <!-- HEADER -->
+    <header id="header">
+      
+      <!-- LOGO -->
+      <a href="/" title="#">
+        <img src="#" alt="LMU l">
+      </a>
+      
+      <!-- MAIN NAVIGATION -->
+      <div id="pseudo-nav">
+        <button type="button" onclick="startVideo(); ">Start streaming</button>
+        <button type="button" onclick="stopVideo();">Stop streaming</button>
+        <button type="button" onclick="connect();" >Connect</button>
+        <button type="button" onclick="onHangUp();">Hang Up</button>
+      </div>
+
+    </header>
+	
+    <!-- MAIN CONTENT AREA -->
+    <div id="mainContentWrapper">
+        <!-- HOME SCREEN -->
+        <div id="livevideodivk" >
+          <h2>Local client</h2>
+          <video id="sourcevid" autoplay></video>
+        </div>
+        
+        <!-- LOADER -->
+         <div id="anim" style="visibility:hidden;">
+          <img id="animation" src="images/anim.gif"  />
+        </div>
+      	
+        <!-- REMOTE SCREEN -->
+        <div id="remotevideodivk" >
+          <h2>Remote client</h2>
+          <video id="remotevid" autoplay></video>
+        </div>
+    </div>
+
+    <!-- FOOTER/ CREDENTIALS -->
+    <footer>
+      <div class="half">
+        <h3>Contact me</h3>
+        <ul>
+          <li><span>Name:</span>John Kottis</li>
+          <li><span>Email:</span><a href="mailto:johnkottis.com" title="johnkottis@gmail.com">johnkottis@gmail.com</a></li>
+        </ul>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+</body>
+
+</html>
