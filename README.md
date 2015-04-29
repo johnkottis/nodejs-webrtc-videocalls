@@ -1,2 +1,2 @@
 # nodeJS-video-chat
-Video Chat web application implemented with NodeJs and WebRTC
+Web based video messenger implemented with NodeJs and WebRTC
