@@ -1,7 +1,7 @@
 var WebSocketServer = require('websocket').server,
-    http = require('http'),
-    clients = [],
-    server = http.createServer(function(request, response) {
+http = require('http'),
+clients = [],
+server = http.createServer(function(request, response) {
         // process HTTP request. Since we're writing just WebSockets server
         // we don't have to implement anything.
     });
@@ -21,9 +21,9 @@ wsServer = new WebSocketServer({
  * @param  {String} err          - Error Response
  *
  **/
-function sendCallback (err) {
+ function sendCallback (err) {
     if (err) {
-        console.error("send() error: " + err);
+        console.error('send() error: ' + err);
     }
 }
 
@@ -53,6 +53,6 @@ wsServer.on('request', function (request) {
 
     connection.on('close', function (connection) {
         // close user connection
-        console.log((new Date()) + " Peer disconnected.");
+        console.log((new Date()) + ' Peer disconnected.');
     });
 });
