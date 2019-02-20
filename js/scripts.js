@@ -99,7 +99,7 @@
   function connect() {
     if (!started && localStream) {
      document.getElementById('anim').style.visibility='visible';
-     console.log("Creating PeerConnection.");
+     console.log('Creating PeerConnection.');
      createPeerConnection();
      logg('Adding local stream...');
      peerConn.addStream(localStream);
