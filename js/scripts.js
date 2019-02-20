@@ -1,14 +1,16 @@
 
   // Toggler for active class on navigation
   $( document ).ready(function() {
-    $( "button" ).click(function() {
-      $( "button" ).removeClass("currentState");
-      $(this).addClass("currentState");
+     var $( "button" ) = $button;
+     $button.click(function() {
+     $button.removeClass("currentState");
+     $(this).addClass("currentState");
     });
   });
 
-  var socket = new WebSocket('ws://127.0.0.1:1337/');  // IP of websocket server
-  var stunServer = "stun.l.google.com:19302";
+  var stunServer = "stun.l.google.com:19302",
+      socket = new WebSocket('ws://127.0.0.1:1337/');  // IP of websocket server
+  
   /**
   A STUN (Session Traversal of User Datagram Protocol [UDP] 
   Through Network Address Translators [NATs]) server allows NAT clients
@@ -16,18 +18,17 @@
    VoIP provider hosted outside of the local network.
   **/
 
-  var sourcevid = document.getElementById('sourcevid');
-  var remotevid = document.getElementById('remotevid');
-  var localStream = null;
-  var remoteStream;
-  var peerConn = null;
-  var started = false;
-  var isRTCPeerConnection = true;
-  var mediaConstraints = {'mandatory': {
+  var sourcevid = document.getElementById('sourcevid'),
+      remotevid = document.getElementById('remotevid'),
+      localStream = null,
+      remoteStream,
+      peerConn = null,
+      started = false,
+      isRTCPeerConnection = true,
+      mediaConstraints = {'mandatory': {
                             'OfferToReceiveAudio':true, 
-                            'OfferToReceiveVideo':true }};
-							
- var logg = function(s) { console.log(s); };
+                            'OfferToReceiveVideo':true }},
+      logg = function(s) { console.log(s); };
  
   // send the message to websocket server
   function sendMessage(message) {
@@ -38,12 +39,12 @@
  
   function createPeerConnection() {
 	try {
-      logg("Creating peer connection");
-	  var servers = [];
-	  servers.push({'url':'stun:' + stunServer});
-	  var pc_config = {'iceServers':servers};	  
-      peerConn = new webkitRTCPeerConnection(pc_config);
-      peerConn.onicecandidate = onIceCandidate;
+	      logg("Creating peer connection");
+		  var servers = [];
+		  servers.push({'url':'stun:' + stunServer});
+		  var pc_config = {'iceServers':servers};	  
+	      peerConn = new webkitRTCPeerConnection(pc_config);
+	      peerConn.onicecandidate = onIceCandidate;
     } catch (e) {
 	    try {
 	      peerConn = new RTCPeerConnection('STUN ' + stunServer, onIceCandidate00);
@@ -83,7 +84,11 @@
  
   function onIceCandidate00(candidate, moreToFollow) {
     if (candidate) {
-        sendMessage({type: 'candidate', label: candidate.label, candidate: candidate.toSdp()});
+        sendMessage({
+			type: 'candidate', 
+			label: candidate.label, 
+			candidate: candidate.toSdp()
+		});
     }
     if (!moreToFollow) {
       logg("End of candidates.");
